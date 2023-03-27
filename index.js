@@ -23,6 +23,12 @@ function DeleteCompleted() {
     }
 };
 
+function UpdateValues(){
+    for (let i=0;i<ToDoList.length;i++){
+        console.log(ToDoList[i], ToDoList[i][0], ToDoList[i][1]);
+    }
+};
+
 function InputStart(Obj) { //when input starts (is on focus)
     Obj.style.color = "hsl(0, 0%, 98%)";
 };
@@ -39,6 +45,7 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
         UserInput.blur(); //Take the focus off of input field
         UserInput.value = ""; //Reset input field text
         UserInput.style.color = "hsl(233, 14%, 35%)"; //Reset input field text color
+        UpdateValues()
         //console.log(TempClone.value, ToDoList.length) 
     }
 });
@@ -47,8 +54,11 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
 
 function Check(Obj){
     const MainF = Obj.parentElement.parentElement.value;//Get the value
-    console.log("Check: ",MainF);
+    console.log("Check: ",MainF,"ToDoLength:",ToDoList.length);
     ToDoList[MainF][1] !== ToDoList[MainF][1];
+    if (ToDoList[MainF][1] === false) {
+
+    }
     console.log(ToDoList[MainF][1]);
 };
 
