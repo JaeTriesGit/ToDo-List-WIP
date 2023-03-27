@@ -1,0 +1,132 @@
+body {
+  background-image: url("./Assets/bg-desktop-dark.jpg");
+  background-repeat: no-repeat;
+  background-size: 100%, 100px;
+  background-color: hsl(240deg, 12%, 11%);
+  font-family: "Josefin Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+#TodoTitle {
+  letter-spacing: 15px;
+  color: white;
+  font-size: 50px;
+}
+
+#TopBar {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  width: 50%;
+  height: 50%;
+}
+
+#mode {
+  width: 50px;
+  height: 50px;
+}
+
+#AddBar {
+  width: 50%;
+  height: 60px;
+  border-radius: 6px;
+  background-color: hsl(235deg, 24%, 19%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+#UserInput {
+  width: 90%;
+  height: 40px;
+  background-color: hsl(235deg, 24%, 19%);
+  font-size: 18px;
+  color: hsl(233deg, 14%, 35%);
+  font-family: "Josefin Sans", sans-serif;
+  border-width: 0px;
+}
+
+#Checkbox {
+  width: 30px;
+  height: 30px;
+  border-radius: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: hsl(233deg, 14%, 35%);
+}
+#Checkbox:hover {
+  cursor: pointer;
+  background: linear-gradient(135deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+}
+
+#CheckboxImg {
+  width: 60%;
+  height: 60%;
+  opacity: 1;
+  border-width: 3px;
+  border-style: solid;
+  background-color: hsl(235deg, 24%, 19%);
+  border-radius: 36px;
+  border-color: hsl(235deg, 24%, 19%);
+}
+
+#MainFrame {
+  width: 50%;
+  height: auto;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#Template {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  height: 60px;
+  background-color: hsl(235deg, 24%, 19%);
+  border-bottom-width: 2px;
+  border-bottom-style: solid;
+  border-bottom-color: hsl(234deg, 11%, 52%);
+  visibility: hidden;
+}
+#Template p {
+  text-align: left;
+  font-weight: 400;
+  width: 80%;
+  color: hsl(0deg, 0%, 98%);
+  font-size: 18px;
+}
+
+#Bottom {
+  color: hsl(233deg, 14%, 35%);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: hsl(235deg, 24%, 19%);
+  order: 5000;
+}
+
+#Control {
+  width: 30%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#Control-All:hover, #Control-Active:hover, #Control-Completed:hover, #Control-Clear:hover {
+  color: white;
+  cursor: pointer;
+}
+
+#Delete:hover {
+  cursor: pointer;
+}/*# sourceMappingURL=style.css.map */

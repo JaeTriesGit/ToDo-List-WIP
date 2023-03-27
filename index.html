@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+
+    <div id="TopBar">
+        <h1 id="TodoTitle">TODO</h1>
+        <img id="mode" onclick="ChangeMode()" src="./Assets/icon-sun.svg">
+    </div>
+
+    <div id="AddBar">
+        <div id="Checkbox">
+            <img id="CheckboxImg" class="Checkbox" alt="x" src="./Assets/Empty-Check.png">
+        </div>
+        <input id="UserInput" type="text"onfocus="InputStart(this)" placeholder="Create a new todo...">
+    </div>
+
+    <div id="MainFrame">
+
+        <div id="AllToDos">
+
+            <div id="Template" value="0">
+                <div id="Checkbox">
+                    <img id="CheckboxImg" class="Checkbox"onclick="Check(this)" alt="x" src="./Assets/Empty-Check.png">
+                </div>
+                <p>Test Paragraph</p>
+                <img id="Delete" class="del" onclick="DeleteThis(this)" src="./Assets/icon-cross.svg">
+            </div>
+            
+        </div>
+
+        <div id="Bottom">
+            <p id="Items-Left">X items left</p>
+            <div id="Control">
+                <p id="Control-All">All</p>
+                <p id="Control-Active">Active</p>
+                <p id="Control-Completed">Completed</p>
+            </div>
+            <p id="Control-Clear">Clear Completed</p>
+        </div>
+        
+    </div>
+</body>
+<script src="./index.js"></script>

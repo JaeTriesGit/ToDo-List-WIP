@@ -1,0 +1,159 @@
+$BrightBlue:hsl(220, 98%, 61%);
+$ColorPicker: hsl(0, 0%, 100%);
+//Light
+$VLG:hsl(0, 0%, 98%);
+$VLGB:hsl(236, 33%, 92%);
+$LGB:hsl(233, 11%, 84%);
+$DGB:hsl(236, 9%, 61%);
+$VDGB:hsl(235, 19%, 35%);
+//Dark
+$VDB:hsl(235, 21%, 11%);
+$VDDB:hsl(235, 24%, 19%);
+$LiGB:hsl(234, 39%, 85%);
+$HoverStateDark:hsl(236, 33%, 92%);
+$DaGB:hsl(234, 11%, 52%);
+$VeDGB:hsl(233, 14%, 35%);
+$VeDGB2:hsl(237, 14%, 26%);
+//Gradient
+$Grad:linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+$Grad2:linear-gradient(315deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
+//Font
+$Jos:"Josefin Sans", sans-serif;
+
+body{
+    background-image: url("./Assets/bg-desktop-dark.jpg");
+    background-repeat:no-repeat;
+    background-size:100%, 100px;
+    background-color: hsl(240, 12%, 11%);
+    font-family:$Jos;
+    display:flex;
+    align-items:center;
+    flex-direction:column;
+    gap:20px;
+};
+
+#TodoTitle{
+    letter-spacing:15px;
+    color:white;
+    font-size:50px;
+};
+
+#TopBar{
+    display:flex;
+    justify-content:space-between;
+    flex-direction:row;
+    align-items:center;
+    width:50%;
+    height:50%;
+};
+
+#mode{
+    width:50px;
+    height:50px;
+};
+
+#AddBar{
+    width:50%;
+    height:60px;
+    border-radius:6px;
+    background-color:$VDDB;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+};
+
+#UserInput{
+    width:90%;
+    height:40px;
+    background-color:$VDDB;
+    font-size:18px;
+    color:$VeDGB;
+    font-family:$Jos;
+    border-width:0px;
+};
+
+#Checkbox{
+    width:30px;
+    height:30px;
+    border-radius:36px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:$VeDGB;
+    &:hover{
+        cursor:pointer;
+        background:$Grad;
+    }
+};
+
+#CheckboxImg{
+    width:60%;
+    height:60%;
+    opacity:1;
+    border-width:3px;
+    border-style:solid;
+    background-color:$VDDB;
+    border-radius:36px;
+    border-color:$VDDB;
+}
+
+#MainFrame{
+    width:50%;
+    height:auto;
+    border-radius:6px;
+    overflow:hidden;
+};
+
+#Template{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+    width:100%;
+    height:60px;
+    background-color:$VDDB;
+    border-bottom-width:2px;
+    border-bottom-style:solid;
+    border-bottom-color:$DaGB;
+    visibility:hidden;
+
+    & p{
+        text-align:left;
+        font-weight:400;
+        width:80%;
+        color:$VLG;
+        font-size:18px;
+    }
+};
+
+#Bottom{
+    color:$VeDGB;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+    background-color:$VDDB;
+    order:5000;
+};
+
+#Control{
+    width:30%;
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-between;
+}
+
+#Control-All, #Control-Active, #Control-Completed, #Control-Clear{
+    &:hover{
+        color:white;
+        cursor:pointer;
+    }
+};
+
+#Delete{
+    &:hover{
+        cursor:pointer;
+    }
+};
