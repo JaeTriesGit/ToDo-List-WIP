@@ -47,7 +47,7 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
 
 function Check(Obj){
     const MainF = Obj.parentElement.parentElement.value;//Get the value
-    console.log("Check: ",MainF)
+    console.log("Check: ",MainF);
     ToDoList[MainF][1] !== ToDoList[MainF][1];
     console.log(ToDoList[MainF][1]);
 };
