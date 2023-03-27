@@ -11,17 +11,17 @@ let ToDoList = [
 function DeleteThis(Obj) { //Get the parent element (temp) and delete!!!
     let Test = Obj.parentElement.value;
     ToDoList.splice(Test, Test+1);
-    console.log(Test);
+    console.log("Deleted:"+Test);
     Obj.parentElement.remove();
 };
 
 function DeleteCompleted() {
     for (let i=0;i<ToDoList.length;i++) {
         if (ToDoList[i][1] === true) {
-            ToDoList.splice(i, i+1);
+            ToDoList.splice(i, 1);
         }
     }
-}
+};
 
 function InputStart(Obj) { //when input starts (is on focus)
     Obj.style.color = "hsl(0, 0%, 98%)";
@@ -46,14 +46,10 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
 //./Assets/icon-check.svg
 
 function Check(Obj){
-    console.log(Obj);
-    if (Checked === true) {
-        Obj.checked=false
-        Obj.src = url('./Assets/Empty-Check.png');
-    } else {
-        Obj.checked=true
-        Obj.src = url('./Assets/icon-check.svg')
-    }
+    const MainF = Obj.parentElement.parentElement.value;//Get the value
+    console.log("Check: ",MainF)
+    ToDoList[MainF][1] !== ToDoList[MainF][1];
+    console.log(ToDoList[MainF][1]);
 };
 
 function ChangeMode() {
