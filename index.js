@@ -5,6 +5,7 @@ let TodoId = 0
 var UserInput = document.getElementById("UserInput");
 const Temp = document.getElementById('Template');
 const TDList = document.getElementById('AllToDos');
+const ItemsLeft = document.getElementById('Items-Left')
 
 const All = document.getElementById("Control-All");
 const Act = document.getElementById("Control-Active");
@@ -80,7 +81,7 @@ document.querySelectorAll(".Tab").forEach(obj => {
          obj.style.color = "hsl(0, 0%, 98%)"
     });
 
-    obj.addEventListener("mouseleave", (e) => { //This is all obviously f'd up we gotta fix dis sometime ;)
+    obj.addEventListener("mouseleave", (e) => { //This is all obviously f'd up we gotta fix dis ;(
         if (Tab === obj.value) {
             obj.style.color = "hsl(220, 98%, 61%)";
         } else {
@@ -90,12 +91,41 @@ document.querySelectorAll(".Tab").forEach(obj => {
 
 });
 
-/*function DeleteThis(Obj) { //Get the parent element (temp) and delete!!!
-    let Test = Obj.parentElement.value;
-    ToDoList.splice(Test, 1);
-    console.log("Deleted:"+Test);
-    Obj.parentElement.remove();
-};*/
+All.addEventListener("mouseenter",(e)=>{
+    All.style.color = "hsl(0,0%,98%)"
+});
+
+All.addEventListener("mouseleave",(e)=>{
+    if (Tab === "All") {
+        All.style.color="hsl(220, 98%, 61%)";
+    } else {
+        All.style.color="hsl(233, 14%, 35%)";
+    }
+});
+
+Act.addEventListener("mouseenter",(e)=>{
+    Act.style.color = "hsl(0,0%,98%)"
+});
+
+Act.addEventListener("mouseleave",(e)=>{
+    if (Tab === "Active") {
+        Act.style.color="hsl(220, 98%, 61%)";
+    } else {
+        Act.style.color="hsl(233, 14%, 35%)";
+    }
+});
+
+Comp.addEventListener("mouseenter",(e)=>{
+    Comp.style.color = "hsl(0,0%,98%)"
+});
+
+Comp.addEventListener("mouseleave",(e)=>{
+    if (Tab === "Completed") {
+        Comp.style.color="hsl(220, 98%, 61%)";
+    } else {
+        Comp.style.color="hsl(233, 14%, 35%)";
+    }
+});
 
 function DeleteCompleted() {
     for (i=0;i<ToDoList.length;i++) {
@@ -104,14 +134,6 @@ function DeleteCompleted() {
             ToDoList.splice(i, 1);
         }
     }
-};
-
-function UpdateValues(){
-    for (let i=0;i<ToDoList.length;i++){
-        
-    }
-
-    //I forgor what I was doing here :skull_emoji:
 };
 
 function InputStart(Obj) { //when input starts (is on focus)
@@ -151,11 +173,15 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
                         CheckImg.src = "./Assets/icon-check.svg";
                         CheckImg.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
                         CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+                        CloneText.style.color = "hsl(233, 14%, 35%)";
+                        CloneText.style.textDecoration = "line-through";
                     } else if (ToDoList[i][1] === true) {
                         ToDoList[i][1] = false;
                         CheckImg.src = "./Assets/Empty-Check.png";
                         CheckImg.style.backgroundImage = "";
                         CloneCheck.style.backgroundImage = "hsl(233, 14%, 35%)";
+                        CloneText.style.color = "hsl(0, 0%, 98%)";
+                        CloneText.style.textDecoration = "none";
                     }
                 }
             }
@@ -163,7 +189,6 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
 
         CloneCheck.addEventListener("mouseenter", (e) => {
             CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
-            console.log('test')
         });
 
         CloneCheck.addEventListener("mouseleave", (e) => {
@@ -197,9 +222,8 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
         UserInput.blur(); //Take the focus off of input field
         UserInput.value = ""; //Reset input field text
         UserInput.style.color = "hsl(233, 14%, 35%)"; //Reset input field text color
-        //UpdateValues();
-        //console.log(TempClone.value, ToDoList.length) 
-        console.log(ToDoList);
+        let TDLen = ToDoList.length;
+        ItemsLeft.innerText = (TDLen+ " items left");
     }
 });
 
@@ -213,25 +237,6 @@ function SwapTab(Type, Obj) {
     Tab = Type;
     console.log(Type);
     ChangeTab();
-};
-
-function Check(Obj){
-    const MainF = Obj.parentElement.parentElement.value;//Get the value
-
-    for (i=0;i<ToDoList.length;i++) {
-        if (ToDoList[i][2] === MainF) {
-            if (ToDoList[i][1] === false) {
-                ToDoList[i][1] = true
-                Obj.src = "./Assets/icon-check.svg"
-                Obj.style.backgroundColor = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
-            } else if (ToDoList[i][1] === true) {
-                ToDoList[i][1] = false
-                Obj.src = "./Assets/Empty-Check.png"
-                Obj.style.backgroundColor = null;
-            }
-        }
-    }
-    //UpdateValues();
 };
 
 function ChangeMode() {

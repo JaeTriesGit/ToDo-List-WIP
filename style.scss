@@ -143,14 +143,21 @@ body{
     justify-content:space-between;
 }
 
-#Control-All, #Control-Active, #Control-Completed, #Control-Clear{
+#Control-All, #Control-Active, #Control-Completed{
     &:hover{
         cursor:pointer;
     }
 };
 
+#Control-Clear{
+    &:hover{
+        cursor:pointer;
+        color:white;
+    }
+}
+
 #Control-All{
-    color:hsl(220, 98%, 61%);
+    color:hsl(220, 98%, 61%); //start with blue color on the "all" tab
 }
 
 #Delete{

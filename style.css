@@ -118,8 +118,13 @@ body {
   justify-content: space-between;
 }
 
-#Control-All:hover, #Control-Active:hover, #Control-Completed:hover, #Control-Clear:hover {
+#Control-All:hover, #Control-Active:hover, #Control-Completed:hover {
   cursor: pointer;
+}
+
+#Control-Clear:hover {
+  cursor: pointer;
+  color: white;
 }
 
 #Control-All {
