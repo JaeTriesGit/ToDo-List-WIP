@@ -54,7 +54,7 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
     if (Tab === "All") { //This bs ain't doing sh?
         for (i=0;i<ToDoList.length;i++) {
             ToDoList[i][3].style.visibility = "visible"; //Check spelling, I had an error here for 20 minutes cus of "visibily" :skull:
-            ToDoList[i][3].order = 0;
+            ToDoList[i][3].style.order = 0;
         }
     } else if (Tab === "Active") {
         let Actives = 0;
@@ -62,10 +62,10 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
             if (ToDoList[i][1] === false) {
                 Actives += 1;
                 ToDoList[i][3].style.visibility = "visible";
-                ToDoList[i][3].order = Actives;
+                ToDoList[i][3].style.order = Actives;
             } else {
                 ToDoList[i][3].style.visibility = "hidden";
-                ToDoList[i][3].order = 5002;
+                ToDoList[i][3].style.order = 5002;
             }
         }
     } else if (Tab === "Completed") {
@@ -74,10 +74,10 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
             if (ToDoList[i][1] === true) {
                 Comple += 1;
                 ToDoList[i][3].style.visibility = "visible";
-                ToDoList[i][3].order = Comple;
+                ToDoList[i][3].style.order = Comple;
             } else {
                 ToDoList[i][3].style.visibility = "hidden";
-                ToDoList[i][3].order = 5002;
+                ToDoList[i][3].style.order = 5002;
             }
         }
     }
