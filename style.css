@@ -62,18 +62,14 @@ body {
 }
 #Checkbox:hover {
   cursor: pointer;
-  background: linear-gradient(135deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
 }
 
 #CheckboxImg {
-  width: 60%;
-  height: 60%;
+  width: 80%;
+  height: 80%;
   opacity: 1;
-  border-width: 3px;
-  border-style: solid;
-  background-color: hsl(235deg, 24%, 19%);
+  background-color: linear-gradient(135deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
   border-radius: 36px;
-  border-color: hsl(235deg, 24%, 19%);
 }
 
 #MainFrame {
@@ -123,8 +119,11 @@ body {
 }
 
 #Control-All:hover, #Control-Active:hover, #Control-Completed:hover, #Control-Clear:hover {
-  color: white;
   cursor: pointer;
+}
+
+#Control-All {
+  color: hsl(220deg, 98%, 61%);
 }
 
 #Delete:hover {

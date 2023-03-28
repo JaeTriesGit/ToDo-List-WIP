@@ -83,19 +83,17 @@ body{
     background:$VeDGB;
     &:hover{
         cursor:pointer;
-        background:$Grad;
     }
 };
 
 #CheckboxImg{
-    width:60%;
-    height:60%;
+    width:80%;
+    height:80%;
     opacity:1;
-    border-width:3px;
-    border-style:solid;
-    background-color:$VDDB;
+    //border-width:3px;
+    //border-style:solid;
+    background-color:$Grad;
     border-radius:36px;
-    border-color:$VDDB;
 }
 
 #MainFrame{
@@ -147,10 +145,13 @@ body{
 
 #Control-All, #Control-Active, #Control-Completed, #Control-Clear{
     &:hover{
-        color:white;
         cursor:pointer;
     }
 };
+
+#Control-All{
+    color:hsl(220, 98%, 61%);
+}
 
 #Delete{
     &:hover{

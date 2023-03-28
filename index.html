@@ -24,10 +24,10 @@
 
             <div id="Template" value="0">
                 <div id="Checkbox">
-                    <img id="CheckboxImg" class="Checkbox"onclick="Check(this)" alt="x" src="./Assets/Empty-Check.png">
+                    <img id="CheckboxImg" class="Checkbox" alt="x" src="./Assets/Empty-Check.png">
                 </div>
                 <p>Test Paragraph</p>
-                <img id="Delete" class="del" onclick="DeleteThis(this)" src="./Assets/icon-cross.svg">
+                <img id="Delete" class="del"src="./Assets/icon-cross.svg">
             </div>
             
         </div>
@@ -35,11 +35,11 @@
         <div id="Bottom">
             <p id="Items-Left">X items left</p>
             <div id="Control">
-                <p id="Control-All">All</p>
-                <p id="Control-Active">Active</p>
-                <p id="Control-Completed">Completed</p>
+                <p id="Control-All" class="Tab" onclick="SwapTab(`All`, this)">All</p>
+                <p id="Control-Active" class="Tab" onclick="SwapTab(`Active`, this)">Active</p>
+                <p id="Control-Completed" class="Tab" onclick="SwapTab(`Completed`, this)">Completed</p>
             </div>
-            <p id="Control-Clear">Clear Completed</p>
+            <p id="Control-Clear"onclick="DeleteCompleted()">Clear Completed</p>
         </div>
         
     </div>
