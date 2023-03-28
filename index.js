@@ -54,21 +54,30 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
     if (Tab === "All") { //This bs ain't doing sh?
         for (i=0;i<ToDoList.length;i++) {
             ToDoList[i][3].style.visibility = "visible"; //Check spelling, I had an error here for 20 minutes cus of "visibily" :skull:
+            ToDoList[i][3].order = 0;
         }
     } else if (Tab === "Active") {
+        let Actives = 0;
         for (i=0;i<ToDoList.length;i++) {
             if (ToDoList[i][1] === false) {
+                Actives += 1;
                 ToDoList[i][3].style.visibility = "visible";
+                ToDoList[i][3].order = Actives;
             } else {
                 ToDoList[i][3].style.visibility = "hidden";
+                ToDoList[i][3].order = 5002;
             }
         }
     } else if (Tab === "Completed") {
         for (i=0;i<ToDoList.length;i++) {
+            let Comple = 0;
             if (ToDoList[i][1] === true) {
+                Comple += 1;
                 ToDoList[i][3].style.visibility = "visible";
+                ToDoList[i][3].order = Comple;
             } else {
                 ToDoList[i][3].style.visibility = "hidden";
+                ToDoList[i][3].order = 5002;
             }
         }
     }
