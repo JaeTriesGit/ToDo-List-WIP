@@ -48,7 +48,7 @@ body {
   font-size: 18px;
   color: hsl(233deg, 14%, 35%);
   font-family: "Josefin Sans", sans-serif;
-  border-width: 0px;
+  border-style: hidden;
 }
 
 #Checkbox {

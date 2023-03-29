@@ -2,6 +2,8 @@ let mode = "dark"
 let Tab = "All"
 let TodoId = 0
 
+//Getting elements
+
 var UserInput = document.getElementById("UserInput");
 const Temp = document.getElementById('Template');
 const TDList = document.getElementById('AllToDos');
@@ -11,11 +13,19 @@ const All = document.getElementById("Control-All");
 const Act = document.getElementById("Control-Active");
 const Comp = document.getElementById("Control-Completed");
 
+//VARIABLES FOR COLORS
+
+let WhiteFront = "hsl(236, 33%, 92%)"
+let WhiteBack = "hsl(0, 0%, 100%)"
+let VeryDarkDesaturatedBlue = "hsl(235, 24%, 19%)"
+
+//The ToDoList
+
 let ToDoList = [
    
 ];
 
-/*function UpdateList(){
+/*function UpdateList(){ This is OLD, OLD OLD OLD!
     const GetAll = document.getElementsByClassName("ToDo");
 
     if (Tab === "All") {
@@ -50,10 +60,15 @@ let ToDoList = [
     }
 };*/
 
+function UpdateItemsLeft() {
+    let TDLen = ToDoList.length;
+    ItemsLeft.innerText = (TDLen+ " items left");
+}
+
 function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
     if (Tab === "All") { //This bs ain't doing sh?
         for (i=0;i<ToDoList.length;i++) {
-            ToDoList[i][3].style.visibility = "visible"; //Check spelling, I had an error here for 20 minutes cus of "visibily" :skull:
+            ToDoList[i][3].style.display = "flex"; //Check spelling, I had an error here for 20 minutes cus of "visibily" :skull:
             ToDoList[i][3].style.order = 0;
         }
     } else if (Tab === "Active") {
@@ -61,10 +76,10 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
         for (i=0;i<ToDoList.length;i++) {
             if (ToDoList[i][1] === false) {
                 Actives += 1;
-                ToDoList[i][3].style.visibility = "visible";
+                ToDoList[i][3].style.display = "flex"; //BROOOOOOOO I AM A GOD or like, a human but like, damn.
                 ToDoList[i][3].style.order = Actives;
             } else {
-                ToDoList[i][3].style.visibility = "hidden";
+                ToDoList[i][3].style.display = "none";
                 ToDoList[i][3].style.order = 5002;
             }
         }
@@ -73,11 +88,11 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
             let Comple = 0;
             if (ToDoList[i][1] === true) {
                 Comple += 1;
-                ToDoList[i][3].style.visibility = "visible";
+                ToDoList[i][3].style.display = "flex";
                 ToDoList[i][3].style.order = Comple;
             } else {
-                ToDoList[i][3].style.visibility = "hidden";
-                ToDoList[i][3].style.order = 5002;
+                ToDoList[i][3].style.display = "none";
+                ToDoList[i][3].style.order = 5002; //Order does not seem to change the render order we're rendering these, figure a new way out!
             }
         }
     }
@@ -87,7 +102,7 @@ document.querySelectorAll(".Tab").forEach(obj => {
 
 
     obj.addEventListener("mouseenter", (e) => {
-         obj.style.color = "hsl(0, 0%, 98%)"
+         obj.style.color = "hsl(0, 0%, 98%)";
     });
 
     obj.addEventListener("mouseleave", (e) => { //This is all obviously f'd up we gotta fix dis ;(
@@ -143,6 +158,7 @@ function DeleteCompleted() {
             ToDoList.splice(i, 1);
         }
     }
+    UpdateItemsLeft();
 };
 
 function InputStart(Obj) { //when input starts (is on focus)
@@ -189,7 +205,11 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
                         CheckImg.src = "./Assets/Empty-Check.png";
                         CheckImg.style.backgroundImage = "";
                         CloneCheck.style.backgroundImage = "hsl(233, 14%, 35%)";
-                        CloneText.style.color = "hsl(0, 0%, 98%)";
+                        if (mode === "dark") {
+                            CloneText.style.color = "hsl(0, 0%, 98%)";
+                        } else if (mode==="light") {
+                            CloneText.style.color = VeryDarkDesaturatedBlue;
+                        }
                         CloneText.style.textDecoration = "none";
                     }
                 }
@@ -206,11 +226,11 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
             if (GetTodo[1] === true) { //If the todo is complete;
                 CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
                 CheckImg.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+                CheckImg.style.display="flex";
             } else if (GetTodo[1] === false) { //If the todo is not complete;
                 CloneCheck.style.backgroundColor = "hsl(233, 14%, 35%)";
-                CheckImg.style.backgroundColor = "hsl(233, 14%, 35%)";
+                CheckImg.style.display="none";
                 CloneCheck.style.backgroundImage = ''; //Lets gooooooo
-                CheckImg.style.backgroundImage = ''; //This fixed everything lmao what even
             }
         });
 
@@ -224,6 +244,7 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
             };
             
             TempClone.remove(); //byebye
+            UpdateItemsLeft();
         });
 
         CloneText.innerText = UserInput.value; //We set the text of the paragraph
@@ -231,8 +252,7 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
         UserInput.blur(); //Take the focus off of input field
         UserInput.value = ""; //Reset input field text
         UserInput.style.color = "hsl(233, 14%, 35%)"; //Reset input field text color
-        let TDLen = ToDoList.length;
-        ItemsLeft.innerText = (TDLen+ " items left");
+        UpdateItemsLeft();
     }
 });
 
@@ -248,17 +268,56 @@ function SwapTab(Type, Obj) {
     ChangeTab();
 };
 
+function UpdateGraphics(){
+    let AddBar = document.getElementById("AddBar"); //The top bar right below "ToDo" & mode changer
+        let AddBarAdd = AddBar.querySelector("input")
+    let Body = document.body; //Body obv
+    let Mode = document.getElementById('mode'); //The mode element
+    let Templ = document.getElementById("Template"); //The template item
+        let Tx = Templ.querySelector("p"); //Template Text
+    let Items = document.querySelectorAll('.ToDo'); //All of the other items
+    let BottomBar = document.getElementById('Bottom'); //This is the bottom bar (items left, tabs & clear)
+
+    if (mode === "light") { //All Light mode here
+        Mode.src="./Assets/icon-moon.svg";
+        Body.style.backgroundImage = "url(./Assets/bg-desktop-light.jpg)";
+        Body.style.backgroundColor = WhiteBack;
+        AddBar.style.backgroundColor = WhiteFront;
+        BottomBar.style.backgroundColor = WhiteFront;
+        AddBarAdd.style.backgroundColor = WhiteFront;
+        Templ.style.backgroundColor = WhiteFront;
+            Tx.style.color = VeryDarkDesaturatedBlue;
+
+        Items.forEach((Obj) => { //This handles all the todo items
+            let Tx = Obj.querySelector("p"); //The pharagraph obj
+            Tx.style.color = VeryDarkDesaturatedBlue;
+            Obj.style.backgroundColor = WhiteFront;
+        });
+
+    } else if (mode === "dark") { //All Dark mode here
+        Mode.src="./Assets/icon-sun.svg";
+        Body.style.backgroundImage = "url(./Assets/bg-desktop-dark.jpg)";
+        Body.style.backgroundColor = "hsl(240, 12%, 11%)";
+        AddBar.style.backgroundColor = "hsl(235, 24%, 19%)";
+        BottomBar.style.backgroundColor = VeryDarkDesaturatedBlue;
+        AddBarAdd.style.backgroundColor = VeryDarkDesaturatedBlue;
+        Templ.style.backgroundColor = VeryDarkDesaturatedBlue;
+            Tx.style.color = WhiteBack;
+
+        Items.forEach((Obj) => { //This handles all the todo items
+            let Tx = Obj.querySelector("p"); //The pharagraph obj
+            Tx.style.color = WhiteBack;
+            Obj.style.backgroundColor = VeryDarkDesaturatedBlue;
+        });
+
+    }
+};
+
 function ChangeMode() {
-    console.log(mode)
     if (mode === "dark") {
         mode = "light";
-        document.getElementById("mode").src="./Assets/icon-moon.svg";
-        document.body.style.backgroundImage = "url(./Assets/bg-desktop-light.jpg)";
-        document.body.style.backgroundColor = "hsl(0, 0%, 100%)";
     } else if (mode === "light") {
         mode = "dark";
-        document.getElementById("mode").src="./Assets/icon-sun.svg";
-        document.body.style.backgroundImage = "url(./Assets/bg-desktop-dark.jpg)";
-        document.body.style.backgroundColor = "hsl(240, 12%, 11%)";
     }
+    UpdateGraphics();
 };
