@@ -50,6 +50,7 @@ body {
   font-family: "Josefin Sans", sans-serif;
   border-style: hidden;
   caret-color: blue;
+  outline: none;
 }
 
 #Checkbox {

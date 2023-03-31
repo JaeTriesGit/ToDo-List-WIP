@@ -153,12 +153,25 @@ Comp.addEventListener("mouseleave",(e)=>{
 });
 
 function DeleteCompleted() {
+    let Indexes = [
+
+    ]
+
     for (i=0;i<ToDoList.length;i++) {
         if (ToDoList[i][1] === true) {
-            ToDoList[i][3].remove();
-            ToDoList.splice(i, 1);
+            Indexes.push(ToDoList[i][2])
         }
     }
+
+    for (i=0;i<Indexes.length;i++){ 
+        for (q=0;q<ToDoList.length;q++){
+            if (ToDoList[q][2] === Indexes[i]) {
+                ToDoList[q][3].remove()
+                ToDoList.splice(q, 1);
+            }
+        }
+    }
+
     UpdateItemsLeft();
 };
 
@@ -233,6 +246,11 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
                 CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
             } else if (GetTodo[1] === false) { //If the todo is not complete;
                 CloneCheck.style.backgroundImage = "none";
+                if (mode==='dark') {
+                    CloneCheck.style.backgroundColor = "";
+                } else if (mode==='light'){
+                    CloneCheck.style.backgroundColor = "";
+                }
             }
         });
 
@@ -276,6 +294,8 @@ function UpdateGraphics(){
     let Body = document.body; //Body obv
     let Mode = document.getElementById('mode'); //The mode element
     let Templ = document.getElementById("Template"); //The template item
+        let TemplChec = Templ.querySelector('div'); // Checkbox elem
+            let TemplCBB = TemplChec.querySelector('div'); //Checkbox BG Elem
         let Tx = Templ.querySelector("p"); //Template Text
     let Items = document.querySelectorAll('.ToDo'); //All of the other items
     let BottomBar = document.getElementById('Bottom'); //This is the bottom bar (items left, tabs & clear)
