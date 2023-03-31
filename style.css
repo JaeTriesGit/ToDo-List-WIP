@@ -49,6 +49,7 @@ body {
   color: hsl(233deg, 14%, 35%);
   font-family: "Josefin Sans", sans-serif;
   border-style: hidden;
+  caret-color: blue;
 }
 
 #Checkbox {
@@ -65,10 +66,10 @@ body {
 }
 
 #CheckboxImg {
-  width: 80%;
-  height: 80%;
   opacity: 1;
-  background-color: linear-gradient(135deg, hsl(192deg, 100%, 67%), hsl(280deg, 87%, 65%));
+  visibility: hidden;
+  background-image: none;
+  background: none;
   border-radius: 36px;
 }
 
@@ -80,7 +81,7 @@ body {
 }
 
 #Template {
-  display: flex;
+  display: none;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
@@ -90,7 +91,6 @@ body {
   border-bottom-width: 2px;
   border-bottom-style: solid;
   border-bottom-color: hsl(234deg, 11%, 52%);
-  visibility: hidden;
 }
 #Template p {
   text-align: left;
@@ -98,6 +98,16 @@ body {
   width: 80%;
   color: hsl(0deg, 0%, 98%);
   font-size: 18px;
+}
+
+.CheckboxBackground {
+  width: 80%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(235deg, 24%, 19%);
+  border-radius: 100%;
 }
 
 #Bottom {

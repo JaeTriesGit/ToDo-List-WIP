@@ -13,7 +13,7 @@
 
     <div id="AddBar">
         <div id="Checkbox">
-            <img id="CheckboxImg" class="Checkbox" alt="x" src="./Assets/Empty-Check.png">
+            <div class="CheckboxBackground"></div>
         </div>
         <input id="UserInput" type="text"onfocus="InputStart(this)" placeholder="Create a new todo...">
     </div>
@@ -24,7 +24,9 @@
 
             <div id="Template" class="Item" value="0">
                 <div id="Checkbox">
-                    <img id="CheckboxImg" class="Checkbox" alt="x" src="./Assets/Empty-Check.png">
+                    <div class="CheckboxBackground">
+                        <img id="CheckboxImg" class="Checkbox" alt="x" src="Assets/icon-check.svg">
+                    </div>
                 </div>
                 <p>Test Paragraph</p>
                 <img id="Delete" class="del"src="./Assets/icon-cross.svg">

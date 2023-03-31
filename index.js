@@ -18,6 +18,7 @@ const Comp = document.getElementById("Control-Completed");
 let WhiteFront = "hsl(236, 33%, 92%)"
 let WhiteBack = "hsl(0, 0%, 100%)"
 let VeryDarkDesaturatedBlue = "hsl(235, 24%, 19%)"
+let DaGB = "hsl(234, 11%, 52%)"
 
 //The ToDoList
 
@@ -68,7 +69,7 @@ function UpdateItemsLeft() {
 function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
     if (Tab === "All") { //This bs ain't doing sh?
         for (i=0;i<ToDoList.length;i++) {
-            ToDoList[i][3].style.display = "flex"; //Check spelling, I had an error here for 20 minutes cus of "visibily" :skull:
+            ToDoList[i][3].style.display = "flex";
             ToDoList[i][3].style.order = 0;
         }
     } else if (Tab === "Active") {
@@ -76,7 +77,7 @@ function ChangeTab() { //0:Text 1:Checked 2:ID 3:TempClone?
         for (i=0;i<ToDoList.length;i++) {
             if (ToDoList[i][1] === false) {
                 Actives += 1;
-                ToDoList[i][3].style.display = "flex"; //BROOOOOOOO I AM A GOD or like, a human but like, damn.
+                ToDoList[i][3].style.display = "flex"; 
                 ToDoList[i][3].style.order = Actives;
             } else {
                 ToDoList[i][3].style.display = "none";
@@ -105,7 +106,7 @@ document.querySelectorAll(".Tab").forEach(obj => {
          obj.style.color = "hsl(0, 0%, 98%)";
     });
 
-    obj.addEventListener("mouseleave", (e) => { //This is all obviously f'd up we gotta fix dis ;(
+    obj.addEventListener("mouseleave", (e) => { 
         if (Tab === obj.value) {
             obj.style.color = "hsl(220, 98%, 61%)";
         } else {
@@ -162,7 +163,11 @@ function DeleteCompleted() {
 };
 
 function InputStart(Obj) { //when input starts (is on focus)
-    Obj.style.color = "hsl(0, 0%, 98%)";
+    if (mode==='dark') {
+        Obj.style.color = WhiteFront;
+    } else if (mode==='light') {
+        Obj.style.color = VeryDarkDesaturatedBlue;
+    }
 };
 
 //Food for thought: Should we completely start over with programming this to make it more efficient?
@@ -180,7 +185,7 @@ function GetTodoById(Id){
 UserInput.addEventListener("keypress", function(event) { //enter press func for userinput
     if (event.key === "Enter") { //If the key pressed is "Enter" 
         const TempClone = Temp.cloneNode(true); //Clone the template
-        TempClone.style.visibility="visible"; //Set visibility
+        TempClone.style.display="flex"; //Set visible
         TempClone.className = "ToDo";
         TodoId += 1;
         ToDoList.push([UserInput.value, false, TodoId, TempClone]); //We'll push em out as [TEXT,COMPLETED,ID,Temp?????]
@@ -188,6 +193,7 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
         let CloneText = TempClone.querySelector('p'); //We get the paragraph
         let CloneCheck = TempClone.querySelector('div'); //The div (for checkbox)
         let CloneDel = TempClone.querySelector('img.del'); //Get the delete?
+        let CheckBoxBackground = CloneCheck.querySelector('div'); //The background
         let CheckImg = CloneCheck.querySelector('img'); //The checkbox
 
         CloneCheck.addEventListener("click", (e) => {
@@ -195,16 +201,16 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
                 if (ToDoList[i][2] === TempClone.value) {
                     if (ToDoList[i][1] === false) {
                         ToDoList[i][1] = true;
-                        CheckImg.src = "./Assets/icon-check.svg";
-                        CheckImg.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+                        CheckImg.style.visibility="visible";
                         CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
+                        CheckBoxBackground.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
                         CloneText.style.color = "hsl(233, 14%, 35%)";
                         CloneText.style.textDecoration = "line-through";
                     } else if (ToDoList[i][1] === true) {
                         ToDoList[i][1] = false;
-                        CheckImg.src = "./Assets/Empty-Check.png";
-                        CheckImg.style.backgroundImage = "";
+                        CheckImg.style.visibility="hidden";
                         CloneCheck.style.backgroundImage = "hsl(233, 14%, 35%)";
+                        CheckBoxBackground.style.backgroundImage ='';
                         if (mode === "dark") {
                             CloneText.style.color = "hsl(0, 0%, 98%)";
                         } else if (mode==="light") {
@@ -225,12 +231,8 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
             console.log(GetTodo[1])
             if (GetTodo[1] === true) { //If the todo is complete;
                 CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
-                CheckImg.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
-                CheckImg.style.display="flex";
             } else if (GetTodo[1] === false) { //If the todo is not complete;
-                CloneCheck.style.backgroundColor = "hsl(233, 14%, 35%)";
-                CheckImg.style.display="none";
-                CloneCheck.style.backgroundImage = ''; //Lets gooooooo
+                CloneCheck.style.backgroundImage = "none";
             }
         });
 
@@ -285,13 +287,18 @@ function UpdateGraphics(){
         AddBar.style.backgroundColor = WhiteFront;
         BottomBar.style.backgroundColor = WhiteFront;
         AddBarAdd.style.backgroundColor = WhiteFront;
+        AddBarAdd.style.color = VeryDarkDesaturatedBlue;
         Templ.style.backgroundColor = WhiteFront;
             Tx.style.color = VeryDarkDesaturatedBlue;
 
         Items.forEach((Obj) => { //This handles all the todo items
+            let CBX = Obj.querySelector('div');
+            let CBB = CBX.querySelector('div');
             let Tx = Obj.querySelector("p"); //The pharagraph obj
             Tx.style.color = VeryDarkDesaturatedBlue;
             Obj.style.backgroundColor = WhiteFront;
+            Obj.style.borderColor = DaGB;
+            CBB.style.backgroundColor = WhiteFront;
         });
 
     } else if (mode === "dark") { //All Dark mode here
@@ -301,13 +308,17 @@ function UpdateGraphics(){
         AddBar.style.backgroundColor = "hsl(235, 24%, 19%)";
         BottomBar.style.backgroundColor = VeryDarkDesaturatedBlue;
         AddBarAdd.style.backgroundColor = VeryDarkDesaturatedBlue;
+        AddBarAdd.style.color = WhiteFront;
         Templ.style.backgroundColor = VeryDarkDesaturatedBlue;
             Tx.style.color = WhiteBack;
 
         Items.forEach((Obj) => { //This handles all the todo items
+            let CBX = Obj.querySelector('div');
+            let CBB = CBX.querySelector('div');
             let Tx = Obj.querySelector("p"); //The pharagraph obj
             Tx.style.color = WhiteBack;
             Obj.style.backgroundColor = VeryDarkDesaturatedBlue;
+            CBB.style.backgroundColor = VeryDarkDesaturatedBlue;
         });
 
     }
