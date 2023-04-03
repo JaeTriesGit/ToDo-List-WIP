@@ -16,9 +16,14 @@ $VeDGB:hsl(233, 14%, 35%);
 $VeDGB2:hsl(237, 14%, 26%);
 //Gradient
 $Grad:linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-$Grad2:linear-gradient(315deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%));
 //Font
 $Jos:"Josefin Sans", sans-serif;
+
+@mixin desktop {
+    @media (min-width:1440px) {
+        @content;
+    }
+}
 
 body{
     background-image: url("./Assets/bg-desktop-dark.jpg");
@@ -43,17 +48,25 @@ body{
     justify-content:space-between;
     flex-direction:row;
     align-items:center;
-    width:50%;
-    height:50%;
+    width:90%;
+    height:90%;
+
+    @include desktop{
+        width:50%;
+        height:50%;
+    }
 };
 
 #mode{
     width:50px;
     height:50px;
+    &:hover{
+        cursor:pointer;
+    }
 };
 
 #AddBar{
-    width:50%;
+    width:90%;
     height:60px;
     border-radius:6px;
     background-color:$VDDB;
@@ -61,6 +74,10 @@ body{
     flex-direction:row;
     align-items:center;
     justify-content:space-around;
+
+    @include desktop{
+        width:50%;
+    }
 };
 
 #UserInput{
@@ -101,10 +118,13 @@ body{
 }
 
 #MainFrame{
-    width:50%;
+    width:90%;
     height:auto;
     border-radius:6px;
     overflow:hidden;
+    @include desktop{
+        width:50%;
+    }
 };
 
 #Template{
@@ -117,7 +137,7 @@ body{
     background-color:$VDDB;
     border-bottom-width:2px;
     border-bottom-style:solid;
-    border-bottom-color:$DaGB;
+    border-bottom-color:$VeDGB2;
 
     & p{
         text-align:left;
@@ -149,14 +169,19 @@ body{
 };
 
 #Control{
-    width:30%;
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:space-between;
+    display:none;
+
+    @include desktop{
+        width:30%;
+        display:flex;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+    }
 }
 
-#Control-All, #Control-Active, #Control-Completed{
+.Tab{
+    color:hsl(233, 14%, 35%);
     &:hover{
         cursor:pointer;
     }
@@ -165,12 +190,26 @@ body{
 #Control-Clear{
     &:hover{
         cursor:pointer;
-        color:white;
     }
 }
 
-#Control-All{
+.Preset{
     color:hsl(220, 98%, 61%); //start with blue color on the "all" tab
+}
+
+#Bottom-Mobile{
+    display:flex;
+    flex-direction:row;
+    align-items:center;
+    justify-content:space-around;
+    border-radius:10px;
+    width:90%;
+    height:60px;
+    background-color:$VDDB;
+
+    @include desktop{
+        display:none;
+    }
 }
 
 #Delete{

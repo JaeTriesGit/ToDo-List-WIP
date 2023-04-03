@@ -11,39 +11,45 @@
         <img id="mode" onclick="ChangeMode()" src="./Assets/icon-sun.svg">
     </div>
 
-    <div id="AddBar">
+    <div id="AddBar" class='BG'>
         <div id="Checkbox">
-            <div class="CheckboxBackground"></div>
+            <div class="CheckboxBackground BG"></div>
         </div>
-        <input id="UserInput" type="text"onfocus="InputStart(this)" placeholder="Create a new todo...">
+        <input id="UserInput" class='BG' type="text"onfocus="InputStart(this)" placeholder="Create a new todo...">
     </div>
 
     <div id="MainFrame">
 
         <div id="AllToDos">
 
-            <div id="Template" class="Item" value="0">
+            <div id="Template" class="Item BG" value="0">
                 <div id="Checkbox">
-                    <div class="CheckboxBackground">
+                    <div class="CheckboxBackground BG">
                         <img id="CheckboxImg" class="Checkbox" alt="x" src="Assets/icon-check.svg">
                     </div>
                 </div>
-                <p>Test Paragraph</p>
+                <p class='TP'>Test Paragraph</p>
                 <img id="Delete" class="del"src="./Assets/icon-cross.svg">
             </div>
             
         </div>
 
-        <div id="Bottom">
+        <div id="Bottom" class='BG'>
             <p id="Items-Left">0 items left</p>
             <div id="Control">
-                <p id="Control-All" class="Tab" onclick="SwapTab(`All`, this)">All</p>
-                <p id="Control-Active" class="Tab" onclick="SwapTab(`Active`, this)">Active</p>
-                <p id="Control-Completed" class="Tab" onclick="SwapTab(`Completed`, this)">Completed</p>
+                <p class="Tab Preset" value="All">All</p>
+                <p class="Tab" value="Active">Active</p>
+                <p class="Tab" value="Completed">Completed</p>
             </div>
             <p id="Control-Clear"onclick="DeleteCompleted()">Clear Completed</p>
         </div>
         
+    </div>
+
+    <div id='Bottom-Mobile' class='BG'>
+        <p class='Tab Preset' value='All'>All</p>
+        <p class='Tab' value='Active'>Active</p>
+        <p class='Tab' value='Completed'>Completed</p>
     </div>
 </body>
 <script src="./index.js"></script>
