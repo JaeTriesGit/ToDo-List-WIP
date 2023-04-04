@@ -68,9 +68,8 @@ body{
 #mode{
     width:50px;
     height:50px;
-
     &:hover{
-        animation:spin 1s ease-in-out 1;
+        animation:spin .5s ease-in-out;
         cursor:pointer;
     }
 };
@@ -157,6 +156,9 @@ body{
         width:80%;
         color:$VLG;
         font-size:18px;
+        &:hover{
+            cursor:grab;
+        }
     }
 };
 
@@ -207,6 +209,10 @@ body{
 
 .Preset{
     color:hsl(220, 98%, 61%); //start with blue color on the "all" tab
+}
+
+.dragging{
+    opacity:0.5;
 }
 
 #Bottom-Mobile{

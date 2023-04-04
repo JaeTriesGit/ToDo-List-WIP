@@ -53,8 +53,8 @@ body {
   height: 50px;
 }
 #mode:hover {
-  -webkit-animation: spin 1s ease-in-out 1;
-          animation: spin 1s ease-in-out 1;
+  -webkit-animation: spin 0.5s ease-in-out;
+          animation: spin 0.5s ease-in-out;
   cursor: pointer;
 }
 
@@ -140,6 +140,10 @@ body {
   color: hsl(0deg, 0%, 98%);
   font-size: 18px;
 }
+#Template p:hover {
+  cursor: -webkit-grab;
+  cursor: grab;
+}
 
 .CheckboxBackground {
   width: 80%;
@@ -187,6 +191,10 @@ body {
 
 .Preset {
   color: hsl(220deg, 98%, 61%);
+}
+
+.dragging {
+  opacity: 0.5;
 }
 
 #Bottom-Mobile {

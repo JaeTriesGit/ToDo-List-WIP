@@ -1,6 +1,7 @@
 let mode = "dark"
 let Tab = "All"
 let TodoId = 0
+let Dragged
 
 //Getting elements
 
@@ -212,7 +213,6 @@ UserInput.addEventListener("keypress", function(event) { //enter press func for 
 
         CloneCheck.addEventListener("mouseleave", (e) => {
             const GetTodo = GetTodoById(TempClone.value);
-            console.log(GetTodo[1])
             if (GetTodo[1] === true) { //If the todo is complete;
                 CloneCheck.style.backgroundImage = "linear-gradient(135deg,hsl(192, 100%, 67%), hsl(280, 87%, 65%))";
             } else if (GetTodo[1] === false) { //If the todo is not complete;
@@ -278,7 +278,7 @@ function UpdateColors(){
 
 };
 
-function ChangeMode() {
+function ChangeMode(Obj) {
     if (mode === "dark") {
         mode = "light";
     } else if (mode === "light") {
